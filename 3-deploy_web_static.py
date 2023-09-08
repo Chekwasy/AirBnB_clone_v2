@@ -2,9 +2,9 @@
 from datetime import datetime
 from fabric.api import local, env, run, put
 
-env.hosts = ["35.231.1.19", "35.229.28.8"]
+env.hosts = ['34.239.207.21', '54.236.225.49']
 env.user = "ubuntu"
-env.key_filename = "~/.ssh/holberton"
+env.key_filename = "~/.ssh/school"
 
 
 def do_pack():
