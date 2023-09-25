@@ -80,7 +80,5 @@ class DBStorage:
         self.__session = Scope()
 
     def close(self):
-        """display our HBNB data
-        """
-
-	self.__session.remove()
+        """display our HBNB data"""
+	self.__session.close()
