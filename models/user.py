@@ -1,30 +1,17 @@
 #!/usr/bin/python3
-# user.py
-"""
-    Module containing the User class
-"""
-from os import environ
-from models.base_model import BaseModel, Base
-from sqlalchemy.orm import relationship
-from sqlalchemy import create_engine, Column, Integer, String
-
-storage_engine = environ.get("HBNB_TYPE_STORAGE")
+"""class user that inherit from basemodel for email name etc"""
+from models.base_model import BaseModel
 
 
-class User(BaseModel, Base):
-    """
-        Represents the User class
-    """
-    if (storage_engine == 'db'):
-        __tablename__ = "users"
-        email = Column(String(128), nullable=False)
-        password = Column(String(128), nullable=False)
-        first_name = Column(String(128), nullable=True)
-        last_name = Column(String(128), nullable=True)
-        places = relationship("Place", backref="user")
-        reviews = relationship("Review", backref="user")
-    else:
-        email = ""
-        password = ""
-        first_name = ""
-        last_name = ""
+class User(BaseModel):
+    """The class user begins"""
+
+    email = ""
+    password = ""
+    first_name = ""
+    last_name = ""
+
+    def __init__(self, *args, **kwargs):
+        """Initialization for user"""
+
+        super().__init__(*args, **kwargs)
