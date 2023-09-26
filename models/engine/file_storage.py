@@ -17,10 +17,17 @@ class FileStorage:
     __file_path = "file.json"
     __objects = {}
 
-    def all(self):
+    def all(self, cls=None):
         """all method to return dictionary of the class attribute"""
 
-        return self.__objects
+        if cls is not None:
+            given_obj_dict = {}
+            for a, b in self.__objects.items():
+                if cls is type(b):
+                    given_obj_dict[a] = b
+            return given_obj_dict
+        elif cls is None:
+            return self.__objects
 
     def new(self, obj):
         """this method sets in the private object obj as the
@@ -54,3 +61,8 @@ class FileStorage:
                     cls = eval(class_name)
                     ins = cls(**value)
                     self.__objects[key] = ins
+
+    def delete(self, obj=None):
+        """to delete obj from __objects if its inside"""
+
+        del (obj)
