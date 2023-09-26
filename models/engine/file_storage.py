@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """This does serialization and deserialiazation"""
 import json
-import os
 from models.base_model import BaseModel
 from models.user import User
 from models.state import State
@@ -52,6 +51,7 @@ class FileStorage:
     def reload(self):
         """reload method to ressurate the object intstance dictionary"""
 
+        import os
         if os.path.exists(FileStorage.__file_path):
             with open(FileStorage.__file_path, "r", encoding="utf-8") as file1:
                 txt = file1.read()
