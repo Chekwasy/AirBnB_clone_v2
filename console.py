@@ -39,9 +39,14 @@ class HBNBCommand(cmd.Cmd):
                 param_dict = {}
                 for i in range(1, no_of_param):
                     param = args[i].split("=")
-                    if '"' in param[1]:
-                        stpr = param[1].split("\"")
-                        param_dict[param[0]] = stpr[1]
+                    if '"' == param[1][0]:
+                        stlen = len(param[1]) - 1
+                        strgg = (param[1])[1:stlen]
+                        if '"' in strgg:
+                            strgg = strgg.replace('"', '\"')
+                        if '_' in strgg:
+                            strgg = strgg.replace('_', ' ')
+                        param_dict[param[0]] = strgg
                     elif '.' in param[1]:
                         param_dict[param[0]] = float(param[1])
                     else:
