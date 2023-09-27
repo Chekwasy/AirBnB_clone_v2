@@ -34,10 +34,11 @@ class DBStorage:
         HBNB_MYSQL_HOST = getenv('HBNB_MYSQL_HOST')
         HBNB_MYSQL_DB = getenv('HBNB_MYSQL_DB')
         HBNB_ENV = getenv('HBNB_ENV')
-        self.__engine = create_engine('mysql+mysqldb://{}:{}@{}/{}'.format(HBNB_MYSQL_USER,
-                                                                           HBNB_MYSQL_PWD,
-                                                                           HBNB_MYSQL_HOST,
-                                                                           HBNB_MYSQL_DB),
+        self.__engine = create_engine('mysql+mysqldb://{}:{}@{}/{}'.format
+                                      (HBNB_MYSQL_USER,
+                                       HBNB_MYSQL_PWD,
+                                       HBNB_MYSQL_HOST,
+                                       HBNB_MYSQL_DB),
                                       pool_pre_ping=True)
         if HBNB_ENV == "test":
             Base.metadata.drop_all(self.__engine)
@@ -57,7 +58,7 @@ class DBStorage:
             objs.extend(self.__session.query(Review).all())
             objs.extend(self.__session.query(Amenity).all())
         else:
-            if type(cls) == str:
+            if type(cls) is str:
                 cls = eval(cls)
             objs = self.__session.query(cls)
         return {"{}.{}".format(type(o).__name__, o.id): o for o in objs}
